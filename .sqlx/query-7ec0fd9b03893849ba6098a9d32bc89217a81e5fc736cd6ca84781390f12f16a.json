@@ -1,0 +1,215 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "\nSELECT\n    COALESCE(EXTRACT(EPOCH FROM bucket)::BIGINT, 0) AS \"bucket!\",\n    ruleset_id AS \"ruleset_id!\",\n    client_type AS \"client_type!\",\n\n    hll_cardinality(user_hll) AS \"unique_user_count!\",\n    hll_cardinality(beatmap_hll) AS \"unique_beatmap_count!\",\n\n    total_scores_per_min AS \"total_scores_per_min!\",\n    replays_per_min AS \"replays_per_min!\",\n    perfect_combos_per_min AS \"perfect_combos_per_min!\",\n\n    min_pp AS \"min_pp!\",\n    max_pp AS \"max_pp!\",\n    sum_pp AS \"sum_pp!\",\n\n    sum_total_score AS \"sum_total_score!\",\n    sum_classic_total_score AS \"sum_classic_total_score!\",\n    sum_legacy_total_score AS \"sum_legacy_total_score!\",\n\n    max_classic_total_score AS \"max_classic_total_score!\",\n    max_legacy_total_score AS \"max_legacy_total_score!\",\n\n    sum_accuracy AS \"sum_accuracy!\",\n    peak_combo AS \"peak_combo!\"\nFROM scores_per_minute;\n            ",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "bucket!",
+        "type_info": "Int8",
+        "origin": "Expression"
+      },
+      {
+        "ordinal": 1,
+        "name": "ruleset_id!",
+        "type_info": "Int2",
+        "origin": {
+          "Table": {
+            "table": "scores_per_minute",
+            "name": "ruleset_id"
+          }
+        }
+      },
+      {
+        "ordinal": 2,
+        "name": "client_type!",
+        "type_info": "Int4",
+        "origin": {
+          "Table": {
+            "table": "scores_per_minute",
+            "name": "client_type"
+          }
+        }
+      },
+      {
+        "ordinal": 3,
+        "name": "unique_user_count!",
+        "type_info": "Float8",
+        "origin": "Expression"
+      },
+      {
+        "ordinal": 4,
+        "name": "unique_beatmap_count!",
+        "type_info": "Float8",
+        "origin": "Expression"
+      },
+      {
+        "ordinal": 5,
+        "name": "total_scores_per_min!",
+        "type_info": "Int8",
+        "origin": {
+          "Table": {
+            "table": "scores_per_minute",
+            "name": "total_scores_per_min"
+          }
+        }
+      },
+      {
+        "ordinal": 6,
+        "name": "replays_per_min!",
+        "type_info": "Int8",
+        "origin": {
+          "Table": {
+            "table": "scores_per_minute",
+            "name": "replays_per_min"
+          }
+        }
+      },
+      {
+        "ordinal": 7,
+        "name": "perfect_combos_per_min!",
+        "type_info": "Int8",
+        "origin": {
+          "Table": {
+            "table": "scores_per_minute",
+            "name": "perfect_combos_per_min"
+          }
+        }
+      },
+      {
+        "ordinal": 8,
+        "name": "min_pp!",
+        "type_info": "Float8",
+        "origin": {
+          "Table": {
+            "table": "scores_per_minute",
+            "name": "min_pp"
+          }
+        }
+      },
+      {
+        "ordinal": 9,
+        "name": "max_pp!",
+        "type_info": "Float8",
+        "origin": {
+          "Table": {
+            "table": "scores_per_minute",
+            "name": "max_pp"
+          }
+        }
+      },
+      {
+        "ordinal": 10,
+        "name": "sum_pp!",
+        "type_info": "Float8",
+        "origin": {
+          "Table": {
+            "table": "scores_per_minute",
+            "name": "sum_pp"
+          }
+        }
+      },
+      {
+        "ordinal": 11,
+        "name": "sum_total_score!",
+        "type_info": "Numeric",
+        "origin": {
+          "Table": {
+            "table": "scores_per_minute",
+            "name": "sum_total_score"
+          }
+        }
+      },
+      {
+        "ordinal": 12,
+        "name": "sum_classic_total_score!",
+        "type_info": "Numeric",
+        "origin": {
+          "Table": {
+            "table": "scores_per_minute",
+            "name": "sum_classic_total_score"
+          }
+        }
+      },
+      {
+        "ordinal": 13,
+        "name": "sum_legacy_total_score!",
+        "type_info": "Numeric",
+        "origin": {
+          "Table": {
+            "table": "scores_per_minute",
+            "name": "sum_legacy_total_score"
+          }
+        }
+      },
+      {
+        "ordinal": 14,
+        "name": "max_classic_total_score!",
+        "type_info": "Int8",
+        "origin": {
+          "Table": {
+            "table": "scores_per_minute",
+            "name": "max_classic_total_score"
+          }
+        }
+      },
+      {
+        "ordinal": 15,
+        "name": "max_legacy_total_score!",
+        "type_info": "Int8",
+        "origin": {
+          "Table": {
+            "table": "scores_per_minute",
+            "name": "max_legacy_total_score"
+          }
+        }
+      },
+      {
+        "ordinal": 16,
+        "name": "sum_accuracy!",
+        "type_info": "Float4",
+        "origin": {
+          "Table": {
+            "table": "scores_per_minute",
+            "name": "sum_accuracy"
+          }
+        }
+      },
+      {
+        "ordinal": 17,
+        "name": "peak_combo!",
+        "type_info": "Int4",
+        "origin": {
+          "Table": {
+            "table": "scores_per_minute",
+            "name": "peak_combo"
+          }
+        }
+      }
+    ],
+    "parameters": {
+      "Left": []
+    },
+    "nullable": [
+      null,
+      true,
+      true,
+      null,
+      null,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ]
+  },
+  "hash": "7ec0fd9b03893849ba6098a9d32bc89217a81e5fc736cd6ca84781390f12f16a"
+}

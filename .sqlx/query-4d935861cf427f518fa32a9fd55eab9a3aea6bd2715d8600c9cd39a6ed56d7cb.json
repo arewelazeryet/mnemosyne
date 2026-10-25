@@ -1,0 +1,45 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "\nSELECT\n    EXTRACT(EPOCH FROM inserted_at)::BIGINT AS \"timestamp!\",\n    stable,\n    lazer\nFROM measurements\nORDER BY lazer DESC, inserted_at ASC\nLIMIT 1\n            ",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "timestamp!",
+        "type_info": "Int8",
+        "origin": "Expression"
+      },
+      {
+        "ordinal": 1,
+        "name": "stable",
+        "type_info": "Int8",
+        "origin": {
+          "Table": {
+            "table": "measurements",
+            "name": "stable"
+          }
+        }
+      },
+      {
+        "ordinal": 2,
+        "name": "lazer",
+        "type_info": "Int8",
+        "origin": {
+          "Table": {
+            "table": "measurements",
+            "name": "lazer"
+          }
+        }
+      }
+    ],
+    "parameters": {
+      "Left": []
+    },
+    "nullable": [
+      null,
+      false,
+      false
+    ]
+  },
+  "hash": "4d935861cf427f518fa32a9fd55eab9a3aea6bd2715d8600c9cd39a6ed56d7cb"
+}

@@ -1,0 +1,215 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "\nSELECT\n    COALESCE(EXTRACT(EPOCH FROM day_bucket)::BIGINT, 0) AS \"day_bucket!\",\n    ruleset_id AS \"ruleset_id!\",\n    client_type AS \"client_type!\",\n\n    hll_cardinality(user_hll) AS \"unique_user_count!\",\n    hll_cardinality(beatmap_hll) AS \"unique_beatmap_count!\",\n\n    total_daily_scores AS \"total_daily_scores!\",\n    daily_scores_with_replays AS \"daily_scores_with_replays!\",\n    daily_perfect_combos AS \"daily_perfect_combos!\",\n\n    daily_min_pp AS \"daily_min_pp!\",\n    daily_max_pp AS \"daily_max_pp!\",\n    daily_sum_pp AS \"daily_sum_pp!\",\n\n    daily_sum_total_score AS \"daily_sum_total_score!\",\n    daily_sum_classic_total_score AS \"daily_sum_classic_total_score!\",\n    daily_sum_legacy_total_score AS \"daily_sum_legacy_total_score!\",\n\n    daily_max_classic_total_score AS \"daily_max_classic_total_score!\",\n    daily_max_legacy_total_score AS \"daily_max_legacy_total_score!\",\n\n    daily_sum_accuracy AS \"daily_sum_accuracy!\",\n    daily_peak_combo AS \"daily_peak_combo!\"\nFROM scores_daily_historic;\n            ",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "day_bucket!",
+        "type_info": "Int8",
+        "origin": "Expression"
+      },
+      {
+        "ordinal": 1,
+        "name": "ruleset_id!",
+        "type_info": "Int2",
+        "origin": {
+          "Table": {
+            "table": "scores_daily_historic",
+            "name": "ruleset_id"
+          }
+        }
+      },
+      {
+        "ordinal": 2,
+        "name": "client_type!",
+        "type_info": "Int4",
+        "origin": {
+          "Table": {
+            "table": "scores_daily_historic",
+            "name": "client_type"
+          }
+        }
+      },
+      {
+        "ordinal": 3,
+        "name": "unique_user_count!",
+        "type_info": "Float8",
+        "origin": "Expression"
+      },
+      {
+        "ordinal": 4,
+        "name": "unique_beatmap_count!",
+        "type_info": "Float8",
+        "origin": "Expression"
+      },
+      {
+        "ordinal": 5,
+        "name": "total_daily_scores!",
+        "type_info": "Numeric",
+        "origin": {
+          "Table": {
+            "table": "scores_daily_historic",
+            "name": "total_daily_scores"
+          }
+        }
+      },
+      {
+        "ordinal": 6,
+        "name": "daily_scores_with_replays!",
+        "type_info": "Numeric",
+        "origin": {
+          "Table": {
+            "table": "scores_daily_historic",
+            "name": "daily_scores_with_replays"
+          }
+        }
+      },
+      {
+        "ordinal": 7,
+        "name": "daily_perfect_combos!",
+        "type_info": "Numeric",
+        "origin": {
+          "Table": {
+            "table": "scores_daily_historic",
+            "name": "daily_perfect_combos"
+          }
+        }
+      },
+      {
+        "ordinal": 8,
+        "name": "daily_min_pp!",
+        "type_info": "Float8",
+        "origin": {
+          "Table": {
+            "table": "scores_daily_historic",
+            "name": "daily_min_pp"
+          }
+        }
+      },
+      {
+        "ordinal": 9,
+        "name": "daily_max_pp!",
+        "type_info": "Float8",
+        "origin": {
+          "Table": {
+            "table": "scores_daily_historic",
+            "name": "daily_max_pp"
+          }
+        }
+      },
+      {
+        "ordinal": 10,
+        "name": "daily_sum_pp!",
+        "type_info": "Float8",
+        "origin": {
+          "Table": {
+            "table": "scores_daily_historic",
+            "name": "daily_sum_pp"
+          }
+        }
+      },
+      {
+        "ordinal": 11,
+        "name": "daily_sum_total_score!",
+        "type_info": "Numeric",
+        "origin": {
+          "Table": {
+            "table": "scores_daily_historic",
+            "name": "daily_sum_total_score"
+          }
+        }
+      },
+      {
+        "ordinal": 12,
+        "name": "daily_sum_classic_total_score!",
+        "type_info": "Numeric",
+        "origin": {
+          "Table": {
+            "table": "scores_daily_historic",
+            "name": "daily_sum_classic_total_score"
+          }
+        }
+      },
+      {
+        "ordinal": 13,
+        "name": "daily_sum_legacy_total_score!",
+        "type_info": "Numeric",
+        "origin": {
+          "Table": {
+            "table": "scores_daily_historic",
+            "name": "daily_sum_legacy_total_score"
+          }
+        }
+      },
+      {
+        "ordinal": 14,
+        "name": "daily_max_classic_total_score!",
+        "type_info": "Int8",
+        "origin": {
+          "Table": {
+            "table": "scores_daily_historic",
+            "name": "daily_max_classic_total_score"
+          }
+        }
+      },
+      {
+        "ordinal": 15,
+        "name": "daily_max_legacy_total_score!",
+        "type_info": "Int8",
+        "origin": {
+          "Table": {
+            "table": "scores_daily_historic",
+            "name": "daily_max_legacy_total_score"
+          }
+        }
+      },
+      {
+        "ordinal": 16,
+        "name": "daily_sum_accuracy!",
+        "type_info": "Float4",
+        "origin": {
+          "Table": {
+            "table": "scores_daily_historic",
+            "name": "daily_sum_accuracy"
+          }
+        }
+      },
+      {
+        "ordinal": 17,
+        "name": "daily_peak_combo!",
+        "type_info": "Int4",
+        "origin": {
+          "Table": {
+            "table": "scores_daily_historic",
+            "name": "daily_peak_combo"
+          }
+        }
+      }
+    ],
+    "parameters": {
+      "Left": []
+    },
+    "nullable": [
+      null,
+      true,
+      true,
+      null,
+      null,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ]
+  },
+  "hash": "571e6fb7758bb8a885ac21ba47f1c526fde222f4a6dd6bc906cae03505c0a1af"
+}
