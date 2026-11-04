@@ -1,12 +1,12 @@
 use bigdecimal::BigDecimal;
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
 use sqlx::prelude::FromRow;
 
 use crate::database::scores::{ClientType, ScoreGameMode};
 
 mod impls;
 
-#[derive(FromRow, Serialize)]
+#[derive(FromRow, Deserialize, Serialize)]
 pub struct ScoresAggregate {
     pub day_bucket: i64,
     #[sqlx(try_from = "i16")]

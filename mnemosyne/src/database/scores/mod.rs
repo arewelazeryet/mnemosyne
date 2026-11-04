@@ -244,13 +244,13 @@ impl fmt::Display for BucketSize {
     }
 }
 
-#[derive(Debug, FromRow)]
+#[derive(Debug, FromRow, Deserialize, Serialize)]
 pub struct ScoreDistributionResponse {
     pub stable: i64,
     pub lazer: i64,
 }
 
-#[derive(Debug, FromRow)]
+#[derive(Debug, FromRow, Deserialize, Serialize)]
 pub struct BucketedResponse {
     pub bucket_floor: i64,
     pub stable: i64,
@@ -258,7 +258,7 @@ pub struct BucketedResponse {
     pub both: i64,
 }
 
-#[derive(Debug, FromRow)]
+#[derive(Debug, FromRow, Deserialize, Serialize)]
 pub struct LatestScore {
     pub ended_at: Timestamp,
     pub id: i64,

@@ -1,11 +1,11 @@
 use bigdecimal::BigDecimal;
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
 
 use crate::database::scores::{ClientType, ScoreGameMode};
 
 mod impls;
 
-#[derive(Debug, Serialize)]
+#[derive(Debug, Deserialize, Serialize)]
 pub struct ScorePerMinute {
     pub bucket: i64,
     pub ruleset_id: ScoreGameMode,

@@ -3,7 +3,7 @@ use color_eyre::{
     Result,
     eyre::{Context, ContextCompat, bail},
 };
-use sqlx::{Postgres, query, query_as, query_scalar};
+use sqlx::{query, query_as};
 
 use crate::database::{Database, Timestamp};
 

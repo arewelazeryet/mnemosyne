@@ -4,7 +4,7 @@ use serde::{Deserialize, Serialize};
 use crate::database::{
     changelog_counts_daily_aggregate::{DailyEntry, RatioRegression, ratio},
     measurements::MeasurementEntry,
-    scores::{ClientType, ScoreGameMode},
+    scores::{BucketedResponse, ClientType, ScoreGameMode},
     scores_daily_historic::ScoresAggregate,
 };
 
@@ -25,6 +25,25 @@ pub struct PointLineResponse {
     pub lazer: Vec<i64>,
     pub sum: Vec<i64>,
     pub ratio: Vec<f64>,
+}
+
+#[derive(Deserialize, Serialize, Debug, Clone)]
+pub struct UserIdDistributionEntry {
+    pub stable: u32,
+    pub lazer: u32,
+    pub both: u32,
+    pub bucket: u32,
+}
+
+impl From<BucketedResponse> for UserIdDistributionEntry {
+    fn from(value: BucketedResponse) -> Self {
+        Self {
+            stable: value.stable as u32,
+            lazer: value.lazer as u32,
+            both: value.both as u32,
+            bucket: value.bucket_floor as u32,
+        }
+    }
 }
 
 #[derive(Serialize, Clone, Debug)]
@@ -133,6 +152,40 @@ pub struct ScoreAggregateResponse {
 
 impl From<&ScoresAggregate> for ScoreAggregateResponse {
     fn from(value: &ScoresAggregate) -> Self {
+        ScoreAggregateResponse {
+            day_bucket: value.day_bucket,
+            ruleset_id: value.ruleset_id,
+            client_type: value.client_type,
+            unique_user_count: value.unique_user_count as i64,
+            unique_beatmap_count: value.unique_beatmap_count as i64,
+            total_daily_scores: value
+                .total_daily_scores
+                .clone()
+                .to_u32()
+                .unwrap_or_default(),
+            daily_scores_with_replays: value.daily_scores_with_replays.to_u32().unwrap_or_default(),
+            daily_perfect_combos: value.daily_perfect_combos.to_u32().unwrap_or_default(),
+            daily_min_pp: value.daily_min_pp,
+            daily_max_pp: value.daily_max_pp,
+            daily_sum_pp: value.daily_sum_pp,
+            daily_sum_total_score: value.daily_sum_total_score.clone(),
+            daily_sum_classic_total_score: value.daily_sum_classic_total_score.clone(),
+            daily_sum_legacy_total_score: value.daily_sum_legacy_total_score.clone(),
+            daily_max_classic_total_score: value.daily_max_classic_total_score,
+            daily_max_legacy_total_score: value.daily_max_legacy_total_score,
+            daily_average_accuracy: (value.daily_sum_accuracy / value.total_daily_scores.clone())
+                .to_f32()
+                .unwrap_or_default(),
+            daily_average_pp: (value.daily_sum_pp / value.total_daily_scores.clone())
+                .to_f32()
+                .unwrap_or_default(),
+            daily_peak_combo: value.daily_peak_combo,
+        }
+    }
+}
+
+impl From<ScoresAggregate> for ScoreAggregateResponse {
+    fn from(value: ScoresAggregate) -> Self {
         ScoreAggregateResponse {
             day_bucket: value.day_bucket,
             ruleset_id: value.ruleset_id,
