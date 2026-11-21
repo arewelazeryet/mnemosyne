@@ -5,6 +5,7 @@
 
 pub mod changelog_counts_daily_aggregate;
 pub mod measurements;
+pub mod performance_rankings;
 pub mod scores;
 pub mod scores_daily_historic;
 pub mod scores_per_minute;

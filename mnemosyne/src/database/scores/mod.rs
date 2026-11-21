@@ -159,6 +159,7 @@ impl From<rosu_v2::model::score::ScoreStatistics> for ScoreStatistics {
 }
 
 #[derive(Default, Debug, Deserialize, Serialize, sqlx::Type, Clone, Copy)]
+#[cfg_attr(feature = "openapi", derive(utoipa::ToSchema))]
 #[sqlx(type_name = "ClientType")]
 #[serde(rename_all = "lowercase")]
 pub enum ClientType {
@@ -188,6 +189,7 @@ impl From<i32> for ClientType {
 }
 
 #[derive(Default, Debug, Clone, Copy, Deserialize, Serialize)]
+#[cfg_attr(feature = "openapi", derive(utoipa::ToSchema))]
 #[serde(rename_all = "lowercase")]
 pub enum ScoreGameMode {
     /// osu!standard
@@ -215,6 +217,7 @@ impl From<i16> for ScoreGameMode {
 
 /// Time window used by the bucketed score queries and the changelog history.
 #[derive(Deserialize, Default, Debug, Clone, PartialEq, Eq)]
+#[cfg_attr(feature = "openapi", derive(utoipa::ToSchema))]
 pub enum BucketSize {
     #[default]
     Day,

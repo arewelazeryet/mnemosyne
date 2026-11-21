@@ -8,30 +8,49 @@ use crate::database::{
     scores_daily_historic::ScoresAggregate,
 };
 
-/// Changelog API entry, simplified
 #[derive(Deserialize, Serialize, Debug, Clone)]
+#[cfg_attr(feature = "openapi", derive(utoipa::ToSchema))]
+/// Changelog snapshot
 pub struct SinglePointResponse {
+    /// unix milliseconds timestamp
     pub timestamp: i64,
+    /// stable user count
     pub stable: i64,
+    /// lazer user count
     pub lazer: i64,
+    /// user count sum
     pub sum: i64,
+    /// lazer:stable ratio
     pub ratio: f64,
 }
 
 #[derive(Deserialize, Serialize, Clone, Debug)]
+#[cfg_attr(feature = "openapi", derive(utoipa::ToSchema))]
+/// Struct-of-arrays of changelog snapshots
 pub struct PointLineResponse {
+    /// list of unix millisecond timestamps
     pub timestamp: Vec<i64>,
+    /// list of stable user counts
     pub stable: Vec<i64>,
+    /// list of lazer user counts
     pub lazer: Vec<i64>,
+    /// list of user count sums
     pub sum: Vec<i64>,
+    /// list of user count ratios
     pub ratio: Vec<f64>,
 }
 
 #[derive(Deserialize, Serialize, Debug, Clone)]
+#[cfg_attr(feature = "openapi", derive(utoipa::ToSchema))]
+/// User ID bucket
 pub struct UserIdDistributionEntry {
+    // stable count
     pub stable: u32,
+    // lazer count
     pub lazer: u32,
+    // both count
     pub both: u32,
+    // bucket threshold
     pub bucket: u32,
 }
 
@@ -47,6 +66,7 @@ impl From<BucketedResponse> for UserIdDistributionEntry {
 }
 
 #[derive(Serialize, Clone, Debug)]
+#[cfg_attr(feature = "openapi", derive(utoipa::ToSchema))]
 pub struct RatioRegressionResponse {
     pub target_ratio: f64,
     pub was_reached: bool,
@@ -128,6 +148,7 @@ impl From<RatioRegression> for RatioRegressionResponse {
 }
 
 #[derive(Debug, Deserialize, Serialize)]
+#[cfg_attr(feature = "openapi", derive(utoipa::ToSchema))]
 pub struct ScoreAggregateResponse {
     pub day_bucket: i64,
     pub ruleset_id: ScoreGameMode,
