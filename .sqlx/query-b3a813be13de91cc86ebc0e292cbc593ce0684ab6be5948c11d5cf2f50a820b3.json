@@ -1,0 +1,34 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "INSERT INTO pp_rankings (fetched_at, user_id, user_name, mode, rank, pp, country_code)\n                VALUES ($1, $2, $3, $4, $5, $6, $7)",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Left": [
+        "Timestamptz",
+        "Int8",
+        "Varchar",
+        {
+          "Custom": {
+            "name": "pp_ruleset",
+            "kind": {
+              "Enum": [
+                "osu",
+                "taiko",
+                "catch",
+                "maniaall",
+                "mania4k",
+                "mania7k"
+              ]
+            }
+          }
+        },
+        "Int4",
+        "Float8",
+        "Varchar"
+      ]
+    },
+    "nullable": []
+  },
+  "hash": "b3a813be13de91cc86ebc0e292cbc593ce0684ab6be5948c11d5cf2f50a820b3"
+}
