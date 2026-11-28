@@ -1,0 +1,51 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "INSERT INTO pp_rankings (\n                    fetched_at, user_id, user_name, country_code, accuracy,\n                    count_300, count_100, count_50, count_miss,\n                    ss_count, ssh_count, s_count, sh_count, a_count,\n                    max_combo, playcount, playtime, ranked_score,\n                    replays_watched, total_hits, total_score,\n                    mode, rank, pp\n                )\n                VALUES (\n                    $1, $2, $3, $4, $5,\n                    $6, $7, $8, $9,\n                    $10, $11, $12, $13, $14,\n                    $15, $16, $17, $18,\n                    $19, $20, $21,\n                    $22, $23, $24\n                )",
+  "describe": {
+    "columns": [],
+    "parameters": {
+      "Left": [
+        "Timestamptz",
+        "Int8",
+        "Varchar",
+        "Varchar",
+        "Float8",
+        "Int4",
+        "Int4",
+        "Int4",
+        "Int4",
+        "Int4",
+        "Int4",
+        "Int4",
+        "Int4",
+        "Int4",
+        "Int4",
+        "Int4",
+        "Int4",
+        "Int8",
+        "Int4",
+        "Int4",
+        "Int8",
+        {
+          "Custom": {
+            "name": "pp_ruleset",
+            "kind": {
+              "Enum": [
+                "osu",
+                "taiko",
+                "catch",
+                "maniaall",
+                "mania4k",
+                "mania7k"
+              ]
+            }
+          }
+        },
+        "Int4",
+        "Float8"
+      ]
+    },
+    "nullable": []
+  },
+  "hash": "d4c9a7af526189edfd3dffc6f3db212fe8172df9d7362469825d3f22eacb226e"
+}
